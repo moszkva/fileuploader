@@ -11,7 +11,7 @@ class Fileuploader extends Facade
 	 */
 	protected static function getFacadeAccessor()
 	{ 
-		return 'Fileuploader'; 
+		return 'fileuploader'; 
 	}
  
 }
