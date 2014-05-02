@@ -42,6 +42,11 @@ class Manager
 		return Models\file::find($id);
 	}
 	
+	public function downloadFileById($id)
+	{
+		return \Response::download($this->getDestinationPath().'/'.Models\file::find($id)->path);
+	}
+	
 	public function getPathById($id)
 	{
 		$id = (string)$id;

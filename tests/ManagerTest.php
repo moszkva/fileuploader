@@ -68,7 +68,7 @@ class ManagerTest extends \TestCase
 				
 		$this->assertEquals($manager->getPathById($id), $return);
 	}
-	
+		
 	public function testInitDirectory()
 	{
 		$manager = new \Moszkva\Fileuploader\Manager();
@@ -134,6 +134,23 @@ class ManagerTest extends \TestCase
 		
 		$this->assertEquals($file, $manager->getFileById($file->id));
 	}
+	
+	public function testDownloadFileById()
+	{
+		$this->initTestFile('mytest');
+		
+		$checksum	= md5_file($this->testFilePath);
+		$mimeType	= mime_content_type($this->testFilePath);
+		$fileSize	= filesize($this->testFilePath);
+		
+		$uploadedFile = new \Symfony\Component\HttpFoundation\File\UploadedFile($this->testFilePath, basename($this->testFilePath), $mimeType, $fileSize, null, true);
+
+		$manager = new \Moszkva\Fileuploader\Manager();
+		
+		$file = $manager->store($uploadedFile);
+
+		$this->assertTrue(strpos($manager->downloadFileById($file->id), basename($this->testFilePath)) > -1);
+	}	
 
 }
 
