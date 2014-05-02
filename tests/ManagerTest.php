@@ -16,7 +16,7 @@ class ManagerTest extends \TestCase
 
 		if(!\Schema::hasTable('migrations'))
 		{
-			\Artisan::call('migrate', array('--env' => 'testing', '--bench' => 'moszkva/fileuploader'));
+			\Artisan::call('migrate', array('--env' => 'testing', '--package' => 'moszkva/fileuploader'));
 		}		
 		
 		$this->initTestFile();
