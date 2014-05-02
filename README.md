@@ -5,7 +5,7 @@ Fileuploader solution for laravel 4
 
   - Stores file's metadatas in a database table
   - Stores file in filesystem 
-  - Easy way for getting stored file
+  - Easy way for getting stored file and download that
   - Easy configuration
 
 ##Installation via Composer##
