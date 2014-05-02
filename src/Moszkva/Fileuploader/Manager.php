@@ -65,7 +65,7 @@ class Manager
 	{
 		$destinationPath = $this->getDestinationPath().'/'.$this->getPathById($id);
 		
-		if($file->move($destinationPath))
+		if($file->move($destinationPath, $file->getClientOriginalName()))
 		{
 			return $this->getPathById($id).'/'.$file->getClientOriginalName();
 		}

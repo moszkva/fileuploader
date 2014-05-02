@@ -33,7 +33,7 @@ class ManagerTest extends \TestCase
 	
     public function tearDown() 
 	{
-		\File::deleteDirectory('tests/upload/tmp', true);
+		\File::deleteDirectory($this->tempUploadDir, true);
 	}	
 
 	public function testTrue()
