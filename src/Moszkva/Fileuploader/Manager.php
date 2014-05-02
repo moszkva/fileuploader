@@ -37,6 +37,11 @@ class Manager
 		return \Config::get('fileuploader::paths.destination_path');
 	}
 	
+	public function getFileById($id)
+	{
+		return Models\file::find($id);
+	}
+	
 	public function getPathById($id)
 	{
 		$id = (string)$id;

@@ -84,7 +84,7 @@ class ManagerTest extends \TestCase
 		$mimeType	= mime_content_type($this->testFilePath);
 		$fileSize	= filesize($this->testFilePath);
 		
-		$uploadedFile = new \Symfony\Component\HttpFoundation\File\UploadedFile($this->testFilePath, basename($this->testFilePath), mime_content_type($this->testFilePath), $fileSize, null, true);
+		$uploadedFile = new \Symfony\Component\HttpFoundation\File\UploadedFile($this->testFilePath, basename($this->testFilePath), $mimeType, $fileSize, null, true);
 
 		$manager = new \Moszkva\Fileuploader\Manager();
 		
@@ -116,6 +116,23 @@ class ManagerTest extends \TestCase
 		$fileNew = $manager->store($uploadedFile);
 		
 		$this->assertTrue($file->id < $fileNew->id);		
+	}
+	
+	public function testGetFileById()
+	{
+		$this->initTestFile('test');
+		
+		$checksum	= md5_file($this->testFilePath);
+		$mimeType	= mime_content_type($this->testFilePath);
+		$fileSize	= filesize($this->testFilePath);
+		
+		$uploadedFile = new \Symfony\Component\HttpFoundation\File\UploadedFile($this->testFilePath, basename($this->testFilePath), $mimeType, $fileSize, null, true);
+
+		$manager = new \Moszkva\Fileuploader\Manager();
+		
+		$file = $manager->store($uploadedFile);
+		
+		$this->assertEquals($file, $manager->getFileById($file->id));
 	}
 
 }
